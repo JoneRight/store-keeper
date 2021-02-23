@@ -1,21 +1,21 @@
 // 全局变量
-@import './variables.scss';
+@import "./variables.scss";
 // ele样式覆盖
-@import './element-ui.scss';
+@import "./element-ui.scss";
 // 顶部右侧显示
-@import './top.scss';
+@import "./top.scss";
 // 导航标签
-@import './tags.scss';
+@import "./tags.scss";
 // 工具类函数
-@import './mixin.scss';
+@import "./mixin.scss";
 // 侧面导航栏
-@import './sidebar.scss';
+@import "./sidebar.scss";
 // 动画
-@import './animate/vue-transition.scss';
+@import "./animate/vue-transition.scss";
 //适配
-@import './media.scss';
+@import "./media.scss";
 //通用配置
-@import './normalize.scss';
+@import "./normalize.scss";
 
 a {
   text-decoration: none;
@@ -36,7 +36,8 @@ a {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.avue-input-icon__item i, .avue-crud__icon--small {
+.avue-input-icon__item i,
+.avue-crud__icon--small {
   font-family: "iconfont" !important;
   /* 以下内容参照第三方图标库本身的规则 */
   font-size: 24px !important;
@@ -45,7 +46,7 @@ a {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.el-menu-item [class^=icon-] {
+.el-menu-item [class^="icon-"] {
   margin-right: 5px;
   width: 24px;
   text-align: center;
@@ -53,11 +54,46 @@ a {
   vertical-align: middle;
 }
 
-.el-submenu [class^=icon-] {
+.el-submenu [class^="icon-"] {
   vertical-align: middle;
   margin-right: 5px;
   width: 24px;
   text-align: center;
   font-size: 18px;
 }
-
+// 分页样式
+.page-div {
+  padding: 10px 0;
+  text-align: right;
+}
+// 颜色样式
+.color-del {
+  color: #f87070;
+}
+.color-del:hover {
+  color: #f7a6a6;
+}
+.color-add {
+  color: #29cec8;
+}
+.color-add:hover {
+  color: #55ebe6;
+}
+.color-import {
+  color: #74d087;
+}
+.color-import:hover {
+  color: #97dfa5;
+}
+.color-export {
+  color: #9194cd;
+}
+.color-export:hover {
+  color: #acafdb;
+}
+.color-distribution {
+  color: #67c23a;
+}
+.color-distribution:hover {
+  color: #98e074;
+}
