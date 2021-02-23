@@ -7,6 +7,7 @@
           left
         </el-col>
         <el-col :span="18" style='margin-top:15px;'>
+          <!-- 搜索框start -->
           <el-form
             ref="searchForm"
             :model="searchForm"
@@ -74,29 +75,33 @@
               </el-col>
             </el-row>
           </el-form>
+          <!-- 搜索框end -->
+
           <div style="padding-bottom: 20px">
             <el-button
               type="primary"
               size="mini"
-              @click="searchSubmit('searchForm')"
+              @click="addOrEditModel"
             >
               添加模板
             </el-button>
             <el-button
-              type="primary"
+              class="btn-import"
               size="mini"
               @click="importExcel"
             >
               模板导入
             </el-button>
             <el-button
-              type="primary"
+              class="btn-export"
               size="mini"
               @click="exportExcel"
             >
               模板导出
             </el-button>
           </div>
+
+          <!-- 模板数据start -->
           <el-table
             v-loading="loading"
             :data="tableData"
@@ -174,7 +179,9 @@
               :total="page.total">
             </el-pagination>
           </div>
-          
+          <!-- 模板数据end -->
+
+          <addModel :modelShow="modelShow" @model-close="closeDialog" @model-refresh="refreshList"></addModel>
         </el-col>
       </el-row>
     </basic-container>
@@ -182,8 +189,12 @@
 </template>
 
 <script>
+import addModel from '@/views/admin/model/components/add-model.vue'
 export default {
   name: 'model',
+  components: {
+    addModel
+  },
   data () {
     return {
       searchForm:{
@@ -198,10 +209,9 @@ export default {
         total: 10,
         currentPage: 2,
       },// 页码设置
+      modelShow: false, // 模态框显示隐藏
     };
   },
-
-  components: {},
 
   computed: {},
 
@@ -226,8 +236,23 @@ export default {
     },
     // 模板导入
     importExcel(){},
+
     // 模板导出
     exportExcel(){},
+
+    // 模板添加或者编辑
+    addOrEditModel(){
+      this.modelShow = true
+    },
+
+    // 子传父
+    closeDialog(val){
+      this.modelShow = val
+    },
+
+    refreshList(val){
+      console.log(val)
+    },
   }
 }
 
