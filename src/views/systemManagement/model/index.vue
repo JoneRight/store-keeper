@@ -4,7 +4,7 @@
     <basic-container>
       <el-row>
         <el-col :span="6" style='margin-top:15px;'>
-          left
+          left11
         </el-col>
         <el-col :span="18" style='margin-top:15px;'>
           <!-- 搜索框start -->
@@ -189,7 +189,7 @@
 </template>
 
 <script>
-import addModel from '@/views/admin/model/components/add-model.vue'
+import addModel from '@/views/systemManagement/model/components/add-model.vue'
 export default {
   name: 'model',
   components: {

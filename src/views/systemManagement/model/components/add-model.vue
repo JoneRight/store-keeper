@@ -7,9 +7,11 @@
       width="80%"
       :before-close="handleClose">
 
-      <span>模板名称：</span><el-input v-model="modelName"></el-input>
+      <div class="name-box">
+        <span>模板名称：</span><el-input style="width:200px" v-model="modelName"></el-input>
+      </div>
       <el-row style="display:flex;justify-content:space-around">
-        <el-col :span="5" style="border:1px solid #EBEEF5">
+        <el-col :span="5" class="box-left" style="border:1px solid #EBEEF5">
           <span style="display:block;font-size:16px;text-align:center;padding:10px;border-bottom:1px solid #EBEEF5;margin-bottom:10px">请选择</span>
           <el-table :data="data" border ref="selection" @selection-change="checkAll" style="width: 100%">
             <el-table-column type="selection" width="30"> </el-table-column>
@@ -21,7 +23,7 @@
           <el-button icon="el-icon-d-arrow-right" :disabled="nowSelectData.length?false:true" size="mini" type="primary" @click="handelSelect"></el-button>
           <el-button icon="el-icon-d-arrow-left" :disabled="nowSelectRightData.length?false:true" size="mini" type="primary" @click="handleRemoveSelect" style="margin-top:10px;margin-left:0px;"></el-button>
         </el-col>
-        <el-col :span="16" style="border:1px solid #EBEEF5;min-height:460px">
+        <el-col :span="16" class="box-right" style="border:1px solid #EBEEF5;min-height:460px">
           <span style="display:block;font-size:16px;text-align:center;padding:10px;border-bottom:1px solid #EBEEF5;margin-bottom:10px">已选择</span>
           <el-table :data="selectArr" border ref="selection" @selection-change="checkRightAll" style="width: 100%">
             <el-table-column type="selection" width="30"></el-table-column>
@@ -204,5 +206,25 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
+  .add-model{
+    .el-dialog__body{
+      height: 420px;
+      overflow: hidden;
+      .name-box{
+        display:flex;
+        justify-content: flex-start;
+        padding:10px 0;
+        .el-input{
+          padding-left: 16px;
+        }
+      }
+      .el-row{
+        height: 330px;
+      }
+      .box-left,.box-right{
+        overflow: auto;
+      }
+    }
+  }
 </style>
