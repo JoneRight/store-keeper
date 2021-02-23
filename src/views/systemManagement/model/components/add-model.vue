@@ -8,7 +8,7 @@
       :before-close="handleClose">
 
       <div class="name-box">
-        <span>模板名称：</span><el-input style="width:200px" v-model="modelName"></el-input>
+        <span>模板名称：</span><el-input style="width:200px" v-model="modelNamea"></el-input>
       </div>
       <el-row style="display:flex;justify-content:space-around">
         <el-col :span="5" class="box-left" style="border:1px solid #EBEEF5">
@@ -69,7 +69,7 @@
 <script>
 export default {
   name: 'add-model',
-  props:['modelShow'],
+  props:['modelShow','modelName'],
   data () {
     return {
       data:[{
@@ -80,6 +80,7 @@ export default {
         searchFlag: false,
         computedFlag: false,
         systemFlag: false,
+        rule:[1111]
       }, {
         date: '11000KV-三站2',
         name: '王小虎2',
@@ -133,13 +134,21 @@ export default {
       nowSelectData: [], // 左边选中列表数据
       nowSelectRightData: [], // 右边选中列表数据
       selectArr:[],  // 右边列表
+      modelNamea: ''
     };
   },
 
   created() {
-  },
+    },
 
   components: {},
+
+  watch:{
+    modelName(val){
+      console.log(val)
+      this.modelNamea = val
+    }
+  },
 
   computed: {},
 
@@ -154,6 +163,7 @@ export default {
 
     // 确定
     confirm(){
+      console.log(this.selectArr)
       this.$emit('model-close', false)
       this.$emit('model-refresh', true) 
     },

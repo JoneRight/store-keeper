@@ -145,7 +145,7 @@
                   type="text"
                   size="small"
                   icon="el-icon-edit"
-                  @click="handleClick(scope.row)"
+                  @click="handleEdit(scope.row)"
                 >
                   编辑
                 </el-button>
@@ -181,7 +181,7 @@
           </div>
           <!-- 模板数据end -->
 
-          <addModel :modelShow="modelShow" @model-close="closeDialog" @model-refresh="refreshList"></addModel>
+          <addModel :modelShow="modelShow" :modelName="modelName" @model-close="closeDialog" @model-refresh="refreshList"></addModel>
         </el-col>
       </el-row>
     </basic-container>
@@ -210,6 +210,7 @@ export default {
         currentPage: 2,
       },// 页码设置
       modelShow: false, // 模态框显示隐藏
+      modelName: '',
     };
   },
 
@@ -231,7 +232,7 @@ export default {
       })
     },
     // 清空
-    searchSubmit(formName) {
+    clearSearch(formName) {
       this.$refs[formName].resetFields();
     },
     // 模板导入
@@ -242,6 +243,13 @@ export default {
 
     // 模板添加或者编辑
     addOrEditModel(){
+      this.modelName=""
+      this.modelShow = true
+    },
+
+    // 编辑
+    handleEdit(){
+      this.modelName="模板名称aaa"
       this.modelShow = true
     },
 
