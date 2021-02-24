@@ -57,6 +57,9 @@ export default [
       'icon-kucuntaizhang',//库存台账
       'icon-xiancunliangchaxun',//现存量查询
       'icon-baobiaoguanli',//报表
+      'icon-touxaing',//头像
+      'icon-wenhao',//问号
+      'icon-tuichu',//退出
     ]
   }
 ]

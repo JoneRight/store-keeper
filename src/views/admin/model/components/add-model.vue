@@ -7,9 +7,11 @@
       width="80%"
       :before-close="handleClose">
 
-      <span>模板名称：</span><el-input v-model="modelName"></el-input>
+      <div class="name-box">
+        <span>模板名称：</span><el-input style="width:200px" v-model="modelNamea"></el-input>
+      </div>
       <el-row style="display:flex;justify-content:space-around">
-        <el-col :span="5" style="border:1px solid #EBEEF5">
+        <el-col :span="5" class="box-left" style="border:1px solid #EBEEF5">
           <span style="display:block;font-size:16px;text-align:center;padding:10px;border-bottom:1px solid #EBEEF5;margin-bottom:10px">请选择</span>
           <el-table :data="data" border ref="selection" @selection-change="checkAll" style="width: 100%">
             <el-table-column type="selection" width="30"> </el-table-column>
@@ -21,7 +23,7 @@
           <el-button icon="el-icon-d-arrow-right" :disabled="nowSelectData.length?false:true" size="mini" type="primary" @click="handelSelect"></el-button>
           <el-button icon="el-icon-d-arrow-left" :disabled="nowSelectRightData.length?false:true" size="mini" type="primary" @click="handleRemoveSelect" style="margin-top:10px;margin-left:0px;"></el-button>
         </el-col>
-        <el-col :span="16" style="border:1px solid #EBEEF5;min-height:460px">
+        <el-col :span="16" class="box-right" style="border:1px solid #EBEEF5;">
           <span style="display:block;font-size:16px;text-align:center;padding:10px;border-bottom:1px solid #EBEEF5;margin-bottom:10px">已选择</span>
           <el-table :data="selectArr" border ref="selection" @selection-change="checkRightAll" style="width: 100%">
             <el-table-column type="selection" width="30"></el-table-column>
@@ -37,9 +39,9 @@
                 <el-checkbox v-model="scope.row.requiredFlag"></el-checkbox>
               </template>
             </el-table-column>
-            <el-table-column prop="searchFlag" label="是否为搜索条件">
+            <el-table-column prop="search" label="是否为搜索条件">
               <template slot-scope="scope">
-                <el-checkbox v-model="scope.row.searchFlag"></el-checkbox>
+                <el-checkbox v-model="scope.row.search"></el-checkbox>
               </template>
             </el-table-column>
             <el-table-column prop="computedFlag" label="是否为唯一计算条件">
@@ -67,15 +69,87 @@
 <script>
 export default {
   name: 'add-model',
-  props:['modelShow'],
+  props:['modelShow','modelName'],
   data () {
     return {
+      tableOption:{
+      border: true,
+      index: true,
+      indexLabel: "序号",
+      stripe: true,
+      menuAlign: "center",
+      editBtn: false,
+      delBtn: false,
+      searchMenuSpan: 6,
+      align: "center",
+      addBtn: false,
+      viewBtn: true,
+      column: [
+        {
+          label: "角色名称",
+          prop: "roleName",
+          span: 24,
+          search: true,
+          rules: [
+            {
+              required: true,
+              message: "角色名称不能为空",
+              trigger: "blur"
+            },
+            {
+              min: 3,
+              max: 20,
+              message: "长度在 3 到 20 个字符",
+              trigger: "blur"
+            }
+          ]
+        },
+        {
+          width: 120,
+          label: "角色标识",
+          prop: "roleCode",
+          span: 24,
+          search: true,
+          editDisabled: true,
+          rules: [
+            {
+              required: true,
+              message: "角色标识不能为空",
+              trigger: "blur"
+            },
+            {
+              min: 3,
+              max: 20,
+              message: "长度在 3 到 20 个字符",
+              trigger: "blur"
+            }
+          ]
+        },
+        {
+          width: 150,
+          label: "角色描述",
+          prop: "roleDesc",
+          overHidden: true,
+          span: 24
+        },
+        {
+          label: "创建时间",
+          prop: "createTime",
+          type: "datetime",
+          format: "yyyy-MM-dd HH:mm",
+          valueFormat: "yyyy-MM-dd HH:mm:ss",
+          editDisplay: false,
+          addDisplay: false,
+          span: 24
+        }
+      ]
+    },
       data:[{
         date: '11000KV-三站1',
         name: '王小虎1',
         editFlag: false,
         requiredFlag: false,
-        searchFlag: false,
+        search: false,
         computedFlag: false,
         systemFlag: false,
       }, {
@@ -83,61 +157,28 @@ export default {
         name: '王小虎2',
         editFlag: false,
         requiredFlag: false,
-        searchFlag: false,
-        computedFlag: false,
-        systemFlag: false,
-      }, {
-        date: '11000KV-三站3',
-        name: '王小虎3',
-        editFlag: false,
-        requiredFlag: false,
-        searchFlag: false,
-        computedFlag: false,
-        systemFlag: false,
-      }, {
-        date: '11000KV-三站4',
-        name: '王小虎4',
-        editFlag: false,
-        requiredFlag: false,
-        searchFlag: false,
-        computedFlag: false,
-        systemFlag: false,
-        rules:[],
-      }, {
-        date: '11000KV-三站5',
-        name: '王小虎5',
-        editFlag: false,
-        requiredFlag: false,
-        searchFlag: false,
-        computedFlag: false,
-        systemFlag: false,
-      }, {
-        date: '11000KV-三站6',
-        name: '王小虎6',
-        editFlag: false,
-        requiredFlag: false,
-        searchFlag: false,
-        computedFlag: false,
-        systemFlag: false,
-      }, {
-        date: '11000KV-三站7',
-        name: '王小虎7',
-        editFlag: false,
-        requiredFlag: false,
-        searchFlag: false,
+        search: false,
         computedFlag: false,
         systemFlag: false,
       }], // mock数据
       nowSelectData: [], // 左边选中列表数据
       nowSelectRightData: [], // 右边选中列表数据
       selectArr:[],  // 右边列表
+      modelNamea: ''
     };
   },
 
   created() {
-  },
+    },
 
   components: {},
+
+  watch:{
+    modelName(val){
+      console.log(val)
+      this.modelNamea = val
+    }
+  },
 
   computed: {},
 
@@ -152,8 +193,28 @@ export default {
 
     // 确定
     confirm(){
-      this.$emit('model-close', false)
-      this.$emit('model-refresh', true) 
+      if(this.selectArr.length > 0){
+        // 设定tableOption值
+        let tableOption = {
+          border: true,
+          index: true,
+          indexLabel: "序号",
+          stripe: true,
+          menuAlign: "center",
+          editBtn: false,
+          delBtn: false,
+          searchMenuSpan: 6,
+          align: "center",
+          addBtn: false,
+          viewBtn: true,
+          column: this.selectArr
+        }
+        console.log(tableOption)
+        // this.$emit('model-close', false)
+        this.$emit('model-refresh', true) 
+      }else{
+        this.$message.warning('先选择左侧表头数据')
+      }
     },
      // 取消
     close(){
@@ -204,5 +265,26 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
+  .add-model{
+    .el-dialog__body{
+      height: 420px;
+      overflow: hidden;
+      .name-box{
+        display:flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-bottom:10px;
+        .el-input{
+          padding-left: 16px;
+        }
+      }
+      .el-row{
+        height: 330px;
+      }
+      .box-left,.box-right{
+        overflow: auto;
+      }
+    }
+  }
 </style>
