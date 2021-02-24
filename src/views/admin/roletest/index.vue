@@ -123,7 +123,7 @@ import {
   permissionUpd,
   putObj
 } from "@/api/admin/role";
-import { tableOption } from "@/const/crud/admin/role";
+import { tableOption } from "@/const/crud/admin/roletest";
 import { fetchTree } from "@/api/admin/dept";
 import { fetchMenuTree } from "@/api/admin/menu";
 import { mapGetters } from "vuex";

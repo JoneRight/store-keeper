@@ -51,7 +51,7 @@ export function getObj (id) {
 export function delObj (id) {
   return request({
     url: '/admin/dept/' + id,
-    method: 'delete'
+    method: 'delete',
   })
 }
 

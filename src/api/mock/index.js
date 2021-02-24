@@ -2,7 +2,7 @@
  * @description 左侧菜单栏选项mock数据，后期根据后台传入
  */
 export const getMenuMock = () =>
-  new Promise(resolve =>
+  new Promise((resolve) =>
     resolve({
       data: {
         code: 0,
@@ -12,59 +12,66 @@ export const getMenuMock = () =>
             id: 1000,
             parentId: -1,
             hasChildren: true,
-            icon: "icon-xitongguanli",
-            name: "系统管理",
+            icon: "icon-quanxianguanli",
+            name: "权限管理",
             spread: false,
-            path: "/systemManagement",
+            path: "/admin",
             keepAlive: "0",
             permission: null,
             type: "0",
-            label: "系统管理",
+            label: "权限管理",
             sort: 0,
             children: [
               {
                 id: 1100,
                 parentId: 1000,
                 hasChildren: false,
-                icon: "icon-zhanghaoguanli",
-                name: "账号管理",
-                spread: false,
-                path: "/systemManagement/account/index",
-                keepAlive: "0",
-                permission: null,
-                type: "0",
-                label: "账号管理",
-                sort: 1
-              },
-              {
-                id: 1200,
-                parentId: 1000,
-                hasChildren: false,
-                icon: "icon-quanxianguanli",
-                name: "权限管理",
-                spread: false,
-                path: "/systemManagement/permissions/index",
-                keepAlive: "0",
-                permission: null,
-                type: "0",
-                label: "权限管理",
-                sort: 2
+                icon: "icon-yonghuguanli",
+                sort: 2,
               },
               {
                 id: 1300,
                 parentId: 1000,
                 hasChildren: false,
+                icon: "icon-jiaoseguanli",
+                name: "角色管理",
+                spread: false,
+                path: "/admin/role/index",
+                keepAlive: "0",
+                permission: null,
+                type: "0",
+                label: "角色管理",
+                sort: 3,
+              },
+              {
+                id: 1600,
+                parentId: 1000,
+                hasChildren: false,
+                icon: "icon-jiaoseguanli",
+                name: "test",
+                spread: false,
+                path: "/admin/roletest/index",
+                keepAlive: "0",
+                permission: null,
+                type: "0",
+                label: "test",
+                sort: 3,
+              },
+              {
+                id: 1400,
+                parentId: 1000,
+                hasChildren: false,
                 icon: "icon-mobanshezhi",
                 name: "模板设置",
                 spread: false,
-                path: "/systemManagement/model/index",
+                path: "/admin/model/index",
                 keepAlive: "0",
                 permission: null,
                 type: "0",
                 label: "模板设置",
-                sort: 3
-              }
-            ]
+                sort: 4,
+              },
+            ],
           },
           {
             id: 2000,
@@ -92,7 +99,7 @@ export const getMenuMock = () =>
                 permission: null,
                 type: "0",
                 label: "入库单",
-                sort: 5
+                sort: 5,
               },
               {
                 id: 2200,
@@ -106,7 +113,7 @@ export const getMenuMock = () =>
                 permission: null,
                 type: "0",
                 label: "出库单",
-                sort: 6
+                sort: 6,
               },
               {
                 id: 2300,
@@ -120,9 +127,9 @@ export const getMenuMock = () =>
                 permission: null,
                 type: "0",
                 label: "现存量",
-                sort: 7
-              }
-            ]
+                sort: 7,
+              },
+            ],
           },
           {
             id: 3000,
@@ -150,7 +157,7 @@ export const getMenuMock = () =>
                 permission: null,
                 type: "0",
                 label: "出入库流水账",
-                sort: 9
+                sort: 9,
               },
               {
                 id: 3200,
@@ -164,11 +171,11 @@ export const getMenuMock = () =>
                 permission: null,
                 type: "0",
                 label: "库存台账",
-                sort: 10
-              }
-            ]
-          }
-        ]
-      }
+                sort: 10,
+              },
+            ],
+          },
+        ],
+      },
     })
   );

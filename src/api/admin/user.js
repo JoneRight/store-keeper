@@ -61,3 +61,24 @@ export function getDetails (obj) {
     method: 'get'
   })
 }
+
+/**
+ * 获取分组
+ */
+export function getDeviceGroup (params) {
+  return request({
+    url: '/device/deviceGroup/fullTree',
+    method: 'get',
+    params: params
+  })
+}
+/**
+ * 保存用户的分组
+ */
+export function saveGroup (data) {
+  return request({
+    url: '/device/deviceGroup/relation',
+    method: 'post',
+    data: data
+  })
+}
